@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<div th:if="${param.success}">
+					<div class="alert alert-info">Đăng nhập thành công!</div>
+				</div>
+				<div th:if="${param.usernameWrong}">
+					<div class="alert alert-info">Người dùng không tồn tại!</div>
+				</div>
+				<div th:if="${param.passwordWrong}">
+					<div class="alert alert-info">Nhập sai password!</div>
+				</div>
+				<h1 class="text-center">Đăng nhập</h1>
+				<div class="card-body">
+					<form th:action="@{/login}" th:object="${user}" method="post">
+						<span th:text="${username}"></span>
+						<div class="form-group">	
+							<label>Username</label>
+							<input type="text" name="username" th:field="*{username}" class="form-control" placeholder="Nhập username" required/>
+						</div>
+						
+						<div class="form-group">	
+							<label>Password</label>
+							<input type="password" name="password" th:field="*{password}" class="form-control" placeholder="Nhập password" required reminlength="6" maxlength="20"/>
+						</div>
+						
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Đăng nhập</button>
+						</div>
+						
+						<div class="box-footer">
+							<span>Bạn chưa có tài khoản? Đăng kí <a th:href = "@{/registration}">ở đây</a></span>
+						</div>
+							
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+					<br>
+					<br>
+</body>
+
+</html>

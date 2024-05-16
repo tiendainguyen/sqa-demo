@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Computer Management System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/computers}">Danh sách máy tính</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/viewOrders_admin}">Danh sách đơn hàng</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/login}">Đăng xuất</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<h2>Welcome, <span th:text="${username}"></span>!</h2>
+	<div class="container">
+		<h2>Đơn hàng</h2>
+		<div class="rows">
+			<div class="col-sm-9">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>ID máy tính</th>
+							<th>Giá</th>
+							<th>Số lượng</th>
+							<th>Tổng tiền</th>
+							<th>Username</th>
+							<th>Địa chỉ</th>
+							<th>Số điện thoại</th>
+							<th>Ngày mua</th>
+						</tr>
+					</thead>
+					<tbody>
+							
+								
+								
+							<tr th:each="item:${listOrder}">
+								<input type="hidden" name="id" th:value="${item.computerId}" />
+								<td th:text="${item.id}"></td>
+								<td th:text="${item.computerId}"></td>
+								<td th:text="${item.tien}"></td>
+								<td th:text="${item.soluong}"></td>
+								<td th:text="${item.tien*item.soluong}"></td>
+								<td th:text="${item.username}"></td>
+								<td th:text="${item.diachi}"></td>
+								<td th:text="${item.sdt}"></td>
+								<td th:text="${item.ngaymua}"></td>
+								
+							
+							</tr>
+							
+
+
+					</tbody>
+				</table>
+				<hr />
+				<a class="btn btn-primary btn-sm" href="/computers_user">Mua thêm</a> 
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

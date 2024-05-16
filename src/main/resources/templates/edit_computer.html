@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Computer Management</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Computer Management System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/computers}">Danh sách máy tính</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/shopping-cart/views}">Giỏ hàng</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/viewOrders_admin}">Danh sách đơn hàng</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/login}">Đăng xuất</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Chỉnh sửa máy tính</h1>
+				<div class="card-body">
+					<form th:action="@{/computers/{id} (id=${computer.ID})}" th:object="${computer}" method="post">
+
+						<div class="form-group">
+							<label>Tên<span style="color: red;">*</span>: </label>
+							<input type="text" name="ten" th:field="*{ten}" class="form-control"
+								placeholder="Nhập tên" required />
+						</div>
+						
+						<div class="form-group">
+							<label>Ảnh<span style="color: red;">*</span>: </label>
+								<div class="mb-3">
+									<input type="file" name="anh" th:field="*{anh}" class="form-control" required/>
+								</div>
+						</div>
+
+
+						<div class="form-group">
+							<label>CPU<span style="color: red;">*</span>: </label>
+							<input type="text" name="cpu" th:field="*{cpu}" class="form-control"
+								placeholder="Nhập CPU" required />
+						</div>
+
+						<div class="form-group">
+							<label>Đơn giá<span style="color: red;">*</span>: </label>
+							<input type="number" name="dongia" th:field="*{dongia}" class="form-control"
+								placeholder="Nhập đơn giá" required />
+						</div>
+
+						<div class="form-group">
+							<label>Hãng sản xuất<span style="color: red;">*</span>: </label>
+							<input type="text" name="hangsanxuat" th:field="*{hangsanxuat}" class="form-control"
+								placeholder="Nhập hãng sản xuất" required/>
+						</div>
+
+						<div class="form-group">
+							<label>Hệ điều hành<span style="color: red;">*</span>: </label>
+							<input type="text" name="hedieuhanh" th:field="*{hedieuhanh}" class="form-control"
+								placeholder="Nhập hệ điều hành" required/>
+						</div>
+
+						<div class="form-group">
+							<label>Màn hình<span style="color: red;">*</span>: </label>
+							<input type="text" name="manhinh" th:field="*{manhinh}" class="form-control"
+								placeholder="Nhập màn hình" required/>
+						</div>
+
+						<div class="form-group">
+							<label>Ổ cứng<span style="color: red;">*</span>: </label>
+							<input type="text" name="ocung" th:field="*{ocung}" class="form-control"
+								placeholder="Nhập ổ cứng" required />
+						</div>
+
+						<div class="form-group">
+							<label>RAM<span style="color: red;">*</span>: </label>
+							<input type="text" name="ram" th:field="*{ram}" class="form-control"
+								placeholder="Nhập RAM" required/>
+						</div>
+
+						<div class="form-group">
+							<label>Số lượng<span style="color: red;">*</span>: </label>
+							<input type="number" name="soluong" th:field="*{soluong}" class="form-control"
+								placeholder="Nhập số lượng" required/>
+						</div>
+
+
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Registration</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Computer Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/computers}">Danh sách máy tính </a>
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit}">Suawr máy tính </a>
+      </li>
+    </ul>  
+    
+  </div>
+</nav>
+<br>
+<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<div th:if="${param.success}">
+					<div class="alert alert-info">Đăng kí thành công!</div>
+				</div>
+				<h1 class="text-center">Đăng kí</h1>
+				<div class="card-body">
+					<form th:action="@{/registration}" th:object="${user}" method="post">
+						
+						<div class="form-group">
+							<label>Địa chỉ </label>
+							<input type="text" name="address" th:field="*{address}" class="form-control" placeholder="Nhập địa chỉ" required autofocus/>
+						</div>
+						
+						
+						<div class="form-group">
+							<label>Ngày sinh </label>
+							<input type="text" name="dob" th:field="*{dob}" class="form-control" placeholder="Nhập ngày sinh"/>
+						</div>
+						
+						<div class="form-group">
+							<label>Emai </label>
+							<input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Nhập email"/>
+						</div>
+						
+						<div class="form-group">
+							<label>Họ tên</label>
+							<input type="text" name="fullname" th:field="*{fullname}" class="form-control" placeholder="Nhập họ tên" required/>
+						</div>
+						
+						<div class="form-group">	
+							<label>Password</label>
+							<input type="password" name="password" th:field="*{password}" class="form-control" placeholder="Nhập password" required reminlength="6" maxlength="20"/>
+						</div>
+						
+						<div class="form-group">	
+							<label>Số điện thoại</label>
+							<input type="tel" name="phone" th:field="*{phone}" class="form-control" placeholder="Nhập số điện thoại" required pattern="[0-9]{10}"/>
+						</div>
+						
+						<div class="form-group">	
+							<label >Quyền</label>
+							<input type="text" name="role" th:field="*{role}" class="form-control" value="0" placeholder="0" readonly/>
+						</div>
+						
+						<div class="form-group">	
+							<label>Username</label>
+							<input type="text" name="username" th:field="*{username}" class="form-control" placeholder="Nhập username" required/>
+						</div>
+						
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Đăng kí</button>
+						</div>
+							
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+					<br>
+					<br>
+</body>
+
+</html>

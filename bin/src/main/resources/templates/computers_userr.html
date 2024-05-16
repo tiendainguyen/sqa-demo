@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Computer Management</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Computer Management System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/computers_userr}">Danh sách máy tính</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<h1>Danh sách máy tính</h1>
+		</div>
+		<h2>Welcome, <span th:text="${username}"></span>!</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Ảnh</th>
+					<th scope="col">Tên máy</th>
+					<th scope="col">CPU</th>
+					<th scope="col">RAM</th>
+					<th scope="col">Ổ cứng</th>
+					<th scope="col">Màn hình</th>
+					<th scope="col">Hệ điều hành</th>
+					<th scope="col">Hãng sản xuất</th>
+					<th scope="col">Đơn giá</th>
+					<th scope="col">Số lượng</th>
+					<th scope="col">Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="computer: ${computers}">
+					<td th:text="${computer.ID}"></td>
+					<!--<td width="100" th:src="@{'/demo/uploads/' + ${computer.anh}}"></td>-->
+					<td width="100">
+						<img alt="" th:src="@{'/getimage/'+${computer.anh}}" width="80" height="70"/>
+					</td>
+					<td th:text="${computer.ten}"></td>
+					<td th:text="${computer.cpu}"></td>
+					<td th:text="${computer.ram}"></td>
+					<td th:text="${computer.ocung}"></td>
+					<td th:text="${computer.manhinh}"></td>
+					<td th:text="${computer.hedieuhanh}"></td>
+					<td th:text="${computer.hangsanxuat}"></td>
+					<td th:text="${computer.dongia}"></td>
+					<td th:text="${computer.soluong}"></td>
+					<td>
+						<!--<a th:href = "@{/computers/edit/{id}(id=${computer.ID})}" class="btn btn-primary">Thêm vào giỏ hàng</a>-->
+						<a th:href = "@{/shopping-cart/add/{id}(id=${computer.ID})}" class="btn btn-primary">Thêm vào giỏ hàng</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-2">
+				<div class="col-sm-2">
+					Total Rows: [[${totalItems}]]
+				</div>
+				<div class="col-sm-1">
+					<span th:each = "i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if = "${currentPage != i}" th:href = "@{'/page/' + ${i}}" > [[${i}]]</a>
+						<span th:unless = "${currentPage != i}">[[${i}]]</span>  $nbsp; $nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a th:if = "${currentPage < totalPages}" th:href = "@{'/page/' + ${currentPage + 1}}" >Next</a>
+						<span th:unless = "${currentPage < totalPages }">Next</span> 
+				</div>
+				
+				<div class="col-sm-1">
+					<a th:if = "${currentPage < totalPages}" th:href = "@{'/page/' + ${totalPages}}" >Last</a>
+						<span th:unless = "${currentPage < totalPages }">Last</span> 
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

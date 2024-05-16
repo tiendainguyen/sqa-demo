@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h2>Welcome, <span th:text="${username}"></span>!</h2>
+	<div class="container">
+		<h2>Danh sách giỏ hàng</h2>
+		<div class="rows">
+			<div class="col-sm-9">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>ID máy tính</th>
+							<th>Tên máy tính</th>
+							<th>Giá</th>
+							<th>Số lượng</th>
+							<th>Tổng tiền</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+							
+								
+								
+							<tr th:each="item:${CART_ITEMS}">
+								<form action="/shopping-cart/update" method="post">
+								<input type="hidden" name="id" th:value="${item.computerId}" />
+								<td th:text="${item.id}"></td>
+								<td th:text="${item.computerId}"></td>
+								<td th:text="${item.ten}"></td>
+								<td th:text="${item.gia}"></td>
+								<td><input name="qty" th:value="${item.soluong}"
+									onblur="this.form.submit()" style="width: 50px;"></td>
+								<td th:text="${item.gia*item.soluong}"></td>
+								<td><a class="btn btn-primary btn-sm"
+									th:href = "@{/shopping-cart/remove/{id}(id=${item.computerId})}">Remove</a></td>
+							</form>
+							</tr>
+							
+
+
+					</tbody>
+				</table>
+				<span>Tổng tiền: </span>
+				<span th:text="${TOTAL}"></span>
+				<hr />
+				<a class="btn btn-primary btn-sm" href="/shopping-cart/clear">Clear
+					Cart</a> <a class="btn btn-primary btn-sm" href="/computers_user">Add
+					more</a>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
