@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,6 @@ public class ComputerController {
 	private ComputerService computerService;
 	@Autowired
 	private UserService userService;
-	
 	
 public ComputerController(ComputerService computerService, UserService userService) {
 		super();

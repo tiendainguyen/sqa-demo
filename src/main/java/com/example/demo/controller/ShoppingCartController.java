@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -157,7 +158,8 @@ public class ShoppingCartController {
 
 	@GetMapping("order")
 	public String addOrder(Model model) {
-		String username = userService.getUsername();
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//		String username = userService.getUsername();
 		List<CartItem> listCartItem = shoppingCartService.getCartByUsername(username);
 		User user = userService.getUserByUsername(username);
 		int check = 1;
